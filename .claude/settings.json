@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "marianita-klix-ds": {
+      "command": "node",
+      "args": ["/Users/sergio/Downloads/marianita-klix-design-system/mcp/index.js"]
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "marianita-klix-design-system-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for the Marianita Klix Design System — enables AI assistants to build with the design system",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "marianita-klix-ds-mcp": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1"
+  },
+  "license": "MIT"
+}
