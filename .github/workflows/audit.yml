@@ -1,0 +1,75 @@
+name: Audit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  shellcheck:
+    name: ShellCheck install + audit scripts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run ShellCheck on install.sh
+        uses: ludeeus/action-shellcheck@master
+        with:
+          scandir: '.'
+          ignore_paths: 'node_modules .git'
+
+  mcp-server:
+    name: MCP server smoke test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: 'mcp/package-lock.json'
+
+      - name: Install MCP deps
+        working-directory: mcp
+        run: npm ci
+
+      - name: Validate registry.json structure
+        run: node -e "const r = require('./mcp/registry.json'); if (!r.components || !r.tokens) { console.error('registry.json is missing components or tokens'); process.exit(1); } console.log('registry has', r.components.length, 'components and', Object.keys(r.tokens).length, 'token categories');"
+
+      - name: Smoke-test the server boots
+        working-directory: mcp
+        run: |
+          timeout 5s node index.js < /dev/null || code=$?
+          # The server exits with 143 on SIGTERM (from timeout). 0 also fine.
+          if [[ "${code:-0}" != "0" && "${code:-0}" != "143" && "${code:-0}" != "124" ]]; then
+            echo "Server exited with unexpected code: $code"
+            exit 1
+          fi
+
+  html-lint:
+    name: Quick HTML sanity check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for leftover branding (no old refs)
+        run: |
+          if grep -rli "openreel\|sergiodiazsch" . --include="*.html" --include="*.md" --include="*.json" --include="*.js" 2>/dev/null; then
+            echo "Found legacy branding references. Run a global sed and re-commit."
+            exit 1
+          fi
+          echo "No legacy references found."
+
+      - name: Check all HTML files have <title>
+        run: |
+          missing=0
+          for f in *.html; do
+            if ! grep -q "<title>" "$f"; then
+              echo "Missing <title> in $f"
+              missing=1
+            fi
+          done
+          exit $missing
