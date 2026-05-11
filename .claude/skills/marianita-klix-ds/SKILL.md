@@ -36,6 +36,9 @@ Match the user's request to a row and load the indicated references **before** a
 | **Migrate legacy UI** ("port this to MK-DS", "use MK-DS instead of …") | this SKILL.md | `references/migration.md` |
 | **Refactor existing MK-DS code** | this SKILL.md | `references/anti-patterns.md` |
 | **First time using MK-DS in this conversation** | this SKILL.md | `examples/01-login-page.md` (read once to anchor on shape) |
+| **Composing a dashboard or page with many sections** | this SKILL.md | `examples/02-dashboard.md` |
+| **User shared a Figma URL** | this SKILL.md | `references/figma-workflow.md` + `examples/03-figma-to-code.md` |
+| **User asks for something not in the registry** (carousel, custom variant, etc.) | this SKILL.md | `examples/04-rejected-request.md` (this is the most valuable example — how to say "no" well) |
 | **Confused about the DS's history or my opinions** | — | `references/notes-from-mariana.md` (informal field notes, not required reading) |
 
 Files in `references/_drafts/` are work-in-progress. Don't load them in normal tasks.

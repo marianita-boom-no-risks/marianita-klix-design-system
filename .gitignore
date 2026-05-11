@@ -4,3 +4,5 @@ node_modules/
 *.log
 .env
 .env.local
+
+# Keep mcp/package-lock.json for reproducible CI installs (don't ignore it)

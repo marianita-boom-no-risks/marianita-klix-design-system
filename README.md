@@ -72,10 +72,14 @@ Full reference and example prompts: [`mcp/README.md`](mcp/README.md).
 ```bash
 git clone https://github.com/marianita-boom-no-risks/marianita-klix-design-system.git
 cd marianita-klix-design-system
-cd mcp && npm install && cd ..
+./install.sh
 ```
 
-Open in Claude Code. Ask something like:
+`install.sh` installs the MCP dependencies and symlinks the skill into `~/.claude/skills/`. Run `./install.sh --check` to see status; `./install.sh --uninstall` to remove the symlink later.
+
+Then wire the MCP into your AI client (the install script prints the JSON snippet at the end).
+
+Open Claude Code in any project and ask:
 
 > "Build me a settings page using MK-DS."
 
@@ -86,6 +90,83 @@ Claude activates the skill, calls `get_css_setup`, then `get_page_template`, the
 `SKILL.md` is a router. It looks at what you're asking for, loads the relevant reference docs (state machines, a11y playbook, Figma workflow, dark mode, motion, anti-patterns, migration, recipes, worked examples), and tells Claude: here's the order of operations, here are the hard rules, here's the bar for "done". It exists because giving Claude a giant rulebook didn't work as well as giving it a small router plus on-demand context.
 
 See `.claude/skills/marianita-klix-ds/CHANGELOG.md` for what changed in each version.
+
+## How is this different from shadcn / Mantine / Radix?
+
+Fair question. Quick comparison:
+
+| | MK-DS | shadcn/ui | Mantine | Radix |
+|---|---|---|---|---|
+| **Distribution** | Static HTML + Tailwind CDN | Copy-paste components via CLI | npm package | npm package |
+| **Framework** | Output in HTML / React / Vue / Svelte (via MCP) | React (Tailwind) | React | React (headless) |
+| **Build step** | None | Yours | Yours | Yours |
+| **MCP / AI integration** | Built-in (this is the whole point) | Recent (`shadcn` MCP) | None | None |
+| **Claude skill bundled** | Yes | No | No | No |
+| **Tokens** | CSS custom properties, Tokens Studio compatible | Tailwind config + CSS vars | JS theme object | None (BYO) |
+| **Dark mode** | Semantic tokens auto-swap on `html.dark` | Tailwind dark class | `MantineProvider` | BYO |
+| **Style** | Opinionated palette, fixed `--brand` | Neutral by default | Neutral by default | Unstyled |
+| **Accessibility** | WCAG 2.1 AA per-component playbook | Built on Radix primitives | Yes | Headless primitives, you wire ARIA |
+
+**Pick MK-DS when:**
+- You want AI assistants (Claude, Cursor, Windsurf) to build UI that's automatically token-correct, prefix-correct, and a11y-correct
+- You don't want a build step on the design system itself
+- You like opinionated palettes (you don't want to make every color decision)
+
+**Pick shadcn when:**
+- You want full control over each component's source (it lives in your repo)
+- You're React + Tailwind exclusively
+- You're fine making design decisions yourself
+
+**Pick Mantine when:**
+- You want a batteries-included React component library
+- You like hooks-based component composition
+
+**Pick Radix when:**
+- You want unstyled, accessibility-correct primitives and you'll bring your own styles
+
+There's overlap. MK-DS is the choice when "AI assistants build UI with this DS" is a primary use case, not an afterthought.
+
+## Architecture
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  AI Client (Claude Code / Cursor / Windsurf / …)           │
+└──────────────────────┬──────────────────────────────────────┘
+                       │ activates skill on UI tasks
+                       ▼
+┌─────────────────────────────────────────────────────────────┐
+│  Claude Skill (.claude/skills/marianita-klix-ds/)          │
+│  - SKILL.md (router, hard rules, workflow)                 │
+│  - references/ (state machines, a11y, Figma, dark mode, …) │
+│  - examples/ (golden references)                            │
+│  - scripts/audit-output.sh (validator)                      │
+└──────────────────────┬──────────────────────────────────────┘
+                       │ calls MCP tools in workflow order
+                       ▼
+┌─────────────────────────────────────────────────────────────┐
+│  MCP Server (mcp/index.js, stdio)                          │
+│  - get_css_setup / list_components / search                │
+│  - get_component / get_tokens / get_guidelines             │
+│  - get_page_template                                        │
+└──────────────────────┬──────────────────────────────────────┘
+                       │ reads
+                       ▼
+┌─────────────────────────────────────────────────────────────┐
+│  Registry (mcp/registry.json)                              │
+│  - 61 components + variants/props/a11y                     │
+│  - All design tokens                                        │
+│  - Guidelines + page templates                              │
+└─────────────────────────────────────────────────────────────┘
+                       │
+                       ▼
+┌─────────────────────────────────────────────────────────────┐
+│  Static HTML Docs (index.html, playground.html, …)         │
+│  - Visual reference, copy-paste components                 │
+│  - tokens.json for Figma import via Tokens Studio          │
+└─────────────────────────────────────────────────────────────┘
+```
+
+The registry is the source of truth. The MCP exposes it programmatically. The skill teaches Claude how to use the MCP. The static HTML pages are documentation for humans. Everything stays in sync because everything reads from the same registry.
 
 ## Design principles
 
