@@ -252,6 +252,14 @@
       .hero-heading { font-size: 36px !important; }
       .hero-sub { font-size: 18px !important; }
       .prompts-grid { grid-template-columns: 1fr !important; }
+      .hero-stats { gap: 20px !important; }
+      .hero-stats > div > div:first-child { font-size: 24px !important; }
+      .skill-grid { grid-template-columns: 1fr !important; }
+      .footer-columns { grid-template-columns: 1fr !important; gap: 32px !important; }
+    }
+    @media (max-width: 1024px) and (min-width: 769px) {
+      .skill-grid { grid-template-columns: repeat(2, 1fr) !important; }
+      .footer-columns { grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
     }
   .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   .sr-only:focus{position:fixed;top:8px;left:8px;z-index:9999;width:auto;height:auto;padding:12px 24px;margin:0;overflow:visible;clip:auto;background:var(--brand);color:#fff;font-size:14px;font-weight:600;border-radius:var(--radius-md);box-shadow:var(--shadow-lg);white-space:normal}
@@ -421,15 +429,36 @@
             Get started
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <a href="#how-it-works" style="
+          <a href="https://github.com/marianita-boom-no-risks/marianita-klix-design-system" target="_blank" rel="noopener" style="
             display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px;
             background: var(--bg-secondary); color: var(--text-primary); border-radius: var(--radius-lg);
             font-size: 15px; font-weight: 600; text-decoration: none;
             border: 1px solid var(--border-primary);
             transition: all 0.2s ease;
           ">
-            How it works
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.4 3-.405 1.02.005 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            View on GitHub
           </a>
+        </div>
+
+        <!-- Quick stats -->
+        <div class="hero-stats" style="display: flex; gap: 32px; justify-content: center; margin-top: 56px; flex-wrap: wrap;">
+          <div style="text-align: center;">
+            <div style="font-size: 28px; font-weight: 800; color: var(--text-primary); letter-spacing: -0.02em;">61</div>
+            <div style="font-size: 12px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500;">Components</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 28px; font-weight: 800; color: var(--text-primary); letter-spacing: -0.02em;">7</div>
+            <div style="font-size: 12px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500;">MCP tools</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 28px; font-weight: 800; color: var(--text-primary); letter-spacing: -0.02em;">8</div>
+            <div style="font-size: 12px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500;">Skill references</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 28px; font-weight: 800; color: var(--text-primary); letter-spacing: -0.02em;">4</div>
+            <div style="font-size: 12px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500;">Framework outputs</div>
+          </div>
         </div>
       </div>
     </section>
@@ -460,7 +489,7 @@
 
             <div style="display: flex; align-items: center; gap: 16px;">
               <span style="font-size: 13px; color: var(--text-secondary);">or</span>
-              <a href="#" style="
+              <a href="https://github.com/marianita-boom-no-risks/marianita-klix-design-system/archive/refs/heads/main.zip" style="
                 display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px;
                 border: 1px solid var(--border-primary); border-radius: var(--radius-md);
                 background: var(--bg-primary); color: var(--text-primary);
@@ -478,19 +507,19 @@
         <div class="fade-up" style="display: flex; gap: 24px; align-items: flex-start;">
           <div class="step-num" style="background: var(--success-500);">2</div>
           <div style="flex: 1;">
-            <h3 style="font-size: 22px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px;">Run the setup script</h3>
+            <h3 style="font-size: 22px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px;">Run the install script</h3>
             <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px;">
-              One command does everything &mdash; installs dependencies, configures your AI tool, and verifies everything works. That's it.
+              One command. It installs MCP dependencies, symlinks the Claude skill into <code style="font-family:'SF Mono',monospace; font-size:12px; background:var(--bg-tertiary); padding:2px 6px; border-radius:4px;">~/.claude/skills/</code>, and prints the JSON snippet to paste into your AI client.
             </p>
 
             <div class="code-block" style="margin-bottom: 16px;">
               <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-              <pre><code>cd marianita-klix-design-system && ./setup.sh</code></pre>
+              <pre><code>cd marianita-klix-design-system && ./install.sh</code></pre>
             </div>
 
             <div style="padding: 16px 20px; border-radius: var(--radius-md); background: rgba(23,178,106,0.06); border: 1px solid rgba(23,178,106,0.12);">
               <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.7;">
-                <strong style="color: var(--success-500);">What this does:</strong> Installs Node.js packages, sets up the MCP server, and creates the config file your AI tool needs. You don't need to do anything else.
+                <strong style="color: var(--success-500);">What this does:</strong> installs Node packages for the MCP server, sets up the Claude skill globally, and tells you exactly what to add to your AI client's config. Other flags available: <code style="font-family:'SF Mono',monospace; font-size:12px; background:var(--bg-tertiary); padding:1px 5px; border-radius:3px;">--check</code> (status), <code style="font-family:'SF Mono',monospace; font-size:12px; background:var(--bg-tertiary); padding:1px 5px; border-radius:3px;">--mcp</code> (deps only), <code style="font-family:'SF Mono',monospace; font-size:12px; background:var(--bg-tertiary); padding:1px 5px; border-radius:3px;">--skill</code> (link only), <code style="font-family:'SF Mono',monospace; font-size:12px; background:var(--bg-tertiary); padding:1px 5px; border-radius:3px;">--uninstall</code>.
               </p>
             </div>
 
@@ -587,6 +616,130 @@
           </div>
         </div>
       </div>
+    </section>
+
+
+    <!-- ============ THE SKILL (differentiator) ============ -->
+    <section id="the-skill" style="padding: 80px 24px; max-width: 1000px; margin: 0 auto;">
+      <div style="text-align: center; margin-bottom: 56px;" class="fade-up">
+        <div style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: var(--radius-full); background: rgba(31,18,222,0.08); margin-bottom: 20px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <span style="font-size: 12px; font-weight: 600; color: var(--brand); text-transform: uppercase; letter-spacing: 0.06em;">The differentiator</span>
+        </div>
+        <h2 style="font-size: 32px; font-weight: 800; letter-spacing: -0.03em; color: var(--text-primary); margin-bottom: 12px;">An MCP is good. An MCP <em>plus a skill</em> is better.</h2>
+        <p style="font-size: 17px; color: var(--text-secondary); max-width: 720px; margin: 0 auto; line-height: 1.6;">
+          Most design-system MCPs just expose tools. Claude has to figure out the right order to call them, what rules to enforce, and when to push back on bad requests. <strong style="color: var(--text-primary);">This project includes a Claude skill that does all of that.</strong>
+        </p>
+      </div>
+
+      <div class="fade-up" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px;">
+        <!-- Without skill -->
+        <div style="padding: 24px; border-radius: var(--radius-lg); border: 1px solid var(--border-primary); background: var(--bg-primary);">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+            <div style="width:32px; height:32px; border-radius:50%; background: var(--bg-tertiary); display:flex; align-items:center; justify-content:center;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            <h3 style="font-size: 15px; font-weight: 700; color: var(--text-primary); margin: 0;">MCP alone</h3>
+          </div>
+          <ul style="font-size: 14px; color: var(--text-secondary); line-height: 1.7; padding-left: 18px; margin: 0;">
+            <li>Tools are there, but Claude guesses what to call when</li>
+            <li>Easy to skip <code style="font-family:'SF Mono',monospace; font-size:12px; background:var(--bg-tertiary); padding:1px 5px; border-radius:3px;">get_css_setup</code> and produce broken output</li>
+            <li>No enforcement of the prefix / token / a11y rules</li>
+            <li>If you ask for a carousel, it'll invent one</li>
+          </ul>
+        </div>
+
+        <!-- With skill -->
+        <div style="padding: 24px; border-radius: var(--radius-lg); border: 2px solid var(--brand); background: var(--bg-primary); position: relative;">
+          <div style="position:absolute; top:-10px; right:16px; background: var(--brand); color:#fff; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; padding:4px 10px; border-radius: var(--radius-full);">Included</div>
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+            <div style="width:32px; height:32px; border-radius:50%; background: var(--brand-light); display:flex; align-items:center; justify-content:center;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h3 style="font-size: 15px; font-weight: 700; color: var(--text-primary); margin: 0;">MCP + Claude skill</h3>
+          </div>
+          <ul style="font-size: 14px; color: var(--text-secondary); line-height: 1.7; padding-left: 18px; margin: 0;">
+            <li>Tool order is encoded in the skill (no guessing)</li>
+            <li>8 hard rules enforced automatically (no hardcoded values, <code style="font-family:'SF Mono',monospace; font-size:12px; background:var(--bg-tertiary); padding:1px 5px; border-radius:3px;">mk-</code> prefix, semantic HTML, WCAG AA, etc.)</li>
+            <li>Output contract: every reply has manifest, code, gaps, next steps</li>
+            <li>If you ask for something not in the registry, it offers real options instead of fabricating</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Inside the skill -->
+      <div class="fade-up" style="text-align: center; margin-bottom: 32px;">
+        <h3 style="font-size: 20px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">What's inside the skill</h3>
+        <p style="font-size: 14px; color: var(--text-secondary);">A router that loads context on demand based on what you're asking for.</p>
+      </div>
+
+      <div class="skill-grid fade-up" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+
+        <div style="padding: 20px; border-radius: var(--radius-md); background: var(--bg-secondary); border: 1px solid var(--border-primary);">
+          <div style="font-size: 11px; color: var(--brand); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;">SKILL.md</div>
+          <p style="font-size: 13px; color: var(--text-primary); margin: 0; line-height: 1.5;">Router. Hard rules. Workflow diagram. Token cheatsheet. Loaded every conversation.</p>
+        </div>
+
+        <div style="padding: 20px; border-radius: var(--radius-md); background: var(--bg-secondary); border: 1px solid var(--border-primary);">
+          <div style="font-size: 11px; color: var(--success-500); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;">references/state-machines.md</div>
+          <p style="font-size: 13px; color: var(--text-primary); margin: 0; line-height: 1.5;">10 components with full state machines: CSS classes, ARIA attributes, keyboard maps.</p>
+        </div>
+
+        <div style="padding: 20px; border-radius: var(--radius-md); background: var(--bg-secondary); border: 1px solid var(--border-primary);">
+          <div style="font-size: 11px; color: var(--success-500); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;">references/a11y-playbook.md</div>
+          <p style="font-size: 13px; color: var(--text-primary); margin: 0; line-height: 1.5;">WCAG 2.1 AA per-component patterns. Focus management, live regions, keyboard maps.</p>
+        </div>
+
+        <div style="padding: 20px; border-radius: var(--radius-md); background: var(--bg-secondary); border: 1px solid var(--border-primary);">
+          <div style="font-size: 11px; color: var(--success-500); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;">references/figma-workflow.md</div>
+          <p style="font-size: 13px; color: var(--text-primary); margin: 0; line-height: 1.5;">Figma URL → MK-DS code, with OKLCH perceptual color matching, gap surfacing.</p>
+        </div>
+
+        <div style="padding: 20px; border-radius: var(--radius-md); background: var(--bg-secondary); border: 1px solid var(--border-primary);">
+          <div style="font-size: 11px; color: var(--success-500); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;">references/dark-mode-engineering.md</div>
+          <p style="font-size: 13px; color: var(--text-primary); margin: 0; line-height: 1.5;">Token genealogy. Contrast tables for light + dark. Common bugs and their fixes.</p>
+        </div>
+
+        <div style="padding: 20px; border-radius: var(--radius-md); background: var(--bg-secondary); border: 1px solid var(--border-primary);">
+          <div style="font-size: 11px; color: var(--success-500); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;">references/motion.md</div>
+          <p style="font-size: 13px; color: var(--text-primary); margin: 0; line-height: 1.5;">Duration / easing tokens. Reduced-motion patterns. Performance checklist.</p>
+        </div>
+
+        <div style="padding: 20px; border-radius: var(--radius-md); background: var(--bg-secondary); border: 1px solid var(--border-primary);">
+          <div style="font-size: 11px; color: var(--success-500); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;">references/anti-patterns.md</div>
+          <p style="font-size: 13px; color: var(--text-primary); margin: 0; line-height: 1.5;">30+ failure modes from real PR reviews. Symptom → why it's wrong → fix.</p>
+        </div>
+
+        <div style="padding: 20px; border-radius: var(--radius-md); background: var(--bg-secondary); border: 1px solid var(--border-primary);">
+          <div style="font-size: 11px; color: var(--success-500); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;">references/migration.md</div>
+          <p style="font-size: 13px; color: var(--text-primary); margin: 0; line-height: 1.5;">Bootstrap / Tailwind → MK-DS. Class-by-class mapping, JS migration, state preservation.</p>
+        </div>
+
+        <div style="padding: 20px; border-radius: var(--radius-md); background: var(--bg-secondary); border: 1px solid var(--border-primary);">
+          <div style="font-size: 11px; color: var(--success-500); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;">references/recipes.md</div>
+          <p style="font-size: 13px; color: var(--text-primary); margin: 0; line-height: 1.5;">10 composition recipes: auth form, dashboard, settings, modal, table, pricing, more.</p>
+        </div>
+
+        <div style="padding: 20px; border-radius: var(--radius-md); background: var(--bg-secondary); border: 1px solid var(--border-primary);">
+          <div style="font-size: 11px; color: var(--blue-500); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;">examples/01-login-page.md</div>
+          <p style="font-size: 13px; color: var(--text-primary); margin: 0; line-height: 1.5;">Worked example: full transcript from request to final code, with self-audit.</p>
+        </div>
+
+        <div style="padding: 20px; border-radius: var(--radius-md); background: var(--bg-secondary); border: 1px solid var(--border-primary);">
+          <div style="font-size: 11px; color: var(--blue-500); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;">examples/04-rejected-request.md</div>
+          <p style="font-size: 13px; color: var(--text-primary); margin: 0; line-height: 1.5;">How the skill says "no" well. Real options instead of fabrication. Honest gaps.</p>
+        </div>
+
+        <div style="padding: 20px; border-radius: var(--radius-md); background: var(--bg-secondary); border: 1px solid var(--border-primary);">
+          <div style="font-size: 11px; color: var(--warning-700); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;">scripts/audit-output.sh</div>
+          <p style="font-size: 13px; color: var(--text-primary); margin: 0; line-height: 1.5;">Bash validator. 8 rules. Cross-checks against the component registry. Zero deps.</p>
+        </div>
+
+      </div>
+
+      <p class="fade-up" style="text-align: center; margin-top: 32px; font-size: 14px; color: var(--text-secondary);">
+        All free, all MIT, all inside the repo. <code style="font-family:'SF Mono',monospace; font-size:12px; background:var(--bg-tertiary); padding:2px 6px; border-radius:4px;">.claude/skills/marianita-klix-ds/</code>
+      </p>
     </section>
 
 
@@ -860,7 +1013,7 @@
               <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
             </button>
             <div class="faq-answer">
-              Just pull the latest changes from the repository. Run <code style="font-family:'SF Mono',monospace; font-size:13px; background:var(--bg-tertiary); padding:2px 6px; border-radius:4px;">git pull</code> in the project folder and run <code style="font-family:'SF Mono',monospace; font-size:13px; background:var(--bg-tertiary); padding:2px 6px; border-radius:4px;">./setup.sh</code> again if there are new dependencies. Your AI tool will automatically pick up the changes.
+              Just pull the latest changes from the repository. Run <code style="font-family:'SF Mono',monospace; font-size:13px; background:var(--bg-tertiary); padding:2px 6px; border-radius:4px;">git pull</code> in the project folder, then <code style="font-family:'SF Mono',monospace; font-size:13px; background:var(--bg-tertiary); padding:2px 6px; border-radius:4px;">./install.sh --check</code> to verify the install is still healthy. Re-run <code style="font-family:'SF Mono',monospace; font-size:13px; background:var(--bg-tertiary); padding:2px 6px; border-radius:4px;">./install.sh</code> if you want to refresh MCP deps. Since the skill is symlinked, it picks up the new content automatically.
             </div>
           </div>
 
@@ -894,7 +1047,7 @@
       <div style="text-align: center; margin-bottom: 48px;" class="fade-up">
         <h2 style="font-size: 32px; font-weight: 800; letter-spacing: -0.03em; color: var(--text-primary); margin-bottom: 8px;">Manual IDE setup</h2>
         <p style="font-size: 17px; color: var(--text-secondary);">
-          If you prefer to configure things yourself instead of using <code style="font-family:'SF Mono',monospace; font-size:14px; background:var(--bg-tertiary); padding:2px 8px; border-radius:4px;">setup.sh</code>, expand your IDE below.
+          If you prefer to configure things yourself instead of using <code style="font-family:'SF Mono',monospace; font-size:14px; background:var(--bg-tertiary); padding:2px 8px; border-radius:4px;">install.sh</code>, expand your IDE below.
         </p>
       </div>
 
@@ -1042,14 +1195,73 @@
 
 
     <!-- ============ FOOTER ============ -->
-    <footer style="border-top: 1px solid var(--border-primary); padding: 32px 24px;">
-      <div style="max-width: 800px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between;">
-        <div style="font-size: 12px; color: var(--text-secondary);">Marianita Klix Design System v1.0</div>
-        <div style="display: flex; gap: 16px;">
-          <a href="index.html" style="font-size: 12px; color: var(--text-secondary); text-decoration: none;">Docs</a>
-          <a href="playground.html" style="font-size: 12px; color: var(--text-secondary); text-decoration: none;">Playground</a>
-          <a href="changelog.html" style="font-size: 12px; color: var(--text-secondary); text-decoration: none;">Changelog</a>
+    <footer style="border-top: 1px solid var(--border-primary); padding: 56px 24px 32px; background: var(--bg-secondary);">
+      <div style="max-width: 1000px; margin: 0 auto;">
+
+        <!-- Footer link columns -->
+        <div class="footer-columns" style="display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px;">
+
+          <div>
+            <div style="font-size: 14px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; letter-spacing: -0.01em;">Marianita Klix Design System</div>
+            <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin: 0 0 12px 0; max-width: 320px;">
+              61 components, an MCP server, and a Claude skill. Static HTML, no build step. MIT licensed.
+            </p>
+            <p style="font-size: 12px; color: var(--text-secondary); margin: 0;">v2.0.0 — by Mariana K.</p>
+          </div>
+
+          <div>
+            <div style="font-size: 11px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px;">Design system</div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <a href="index.html" style="font-size: 13px; color: var(--text-primary); text-decoration: none;">Components</a>
+              <a href="playground.html" style="font-size: 13px; color: var(--text-primary); text-decoration: none;">Playground</a>
+              <a href="theme-builder.html" style="font-size: 13px; color: var(--text-primary); text-decoration: none;">Theme builder</a>
+              <a href="figma-handoff.html" style="font-size: 13px; color: var(--text-primary); text-decoration: none;">Figma handoff</a>
+              <a href="a11y.html" style="font-size: 13px; color: var(--text-primary); text-decoration: none;">Accessibility</a>
+              <a href="changelog.html" style="font-size: 13px; color: var(--text-primary); text-decoration: none;">Changelog</a>
+            </div>
+          </div>
+
+          <div>
+            <div style="font-size: 11px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px;">For AI</div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <a href="#steps" style="font-size: 13px; color: var(--text-primary); text-decoration: none;">Install</a>
+              <a href="#the-skill" style="font-size: 13px; color: var(--text-primary); text-decoration: none;">The Claude skill</a>
+              <a href="#how-it-works" style="font-size: 13px; color: var(--text-primary); text-decoration: none;">How it works</a>
+              <a href="#ide-setup" style="font-size: 13px; color: var(--text-primary); text-decoration: none;">Manual IDE setup</a>
+              <a href="assistant.html" style="font-size: 13px; color: var(--text-primary); text-decoration: none;">AI assistant guide</a>
+            </div>
+          </div>
+
+          <div>
+            <div style="font-size: 11px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px;">Project</div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <a href="https://github.com/marianita-boom-no-risks/marianita-klix-design-system" target="_blank" rel="noopener" style="font-size: 13px; color: var(--text-primary); text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+                GitHub
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+              <a href="https://github.com/marianita-boom-no-risks/marianita-klix-design-system/blob/main/README.md" target="_blank" rel="noopener" style="font-size: 13px; color: var(--text-primary); text-decoration: none;">README</a>
+              <a href="https://github.com/marianita-boom-no-risks/marianita-klix-design-system/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener" style="font-size: 13px; color: var(--text-primary); text-decoration: none;">Contributing</a>
+              <a href="https://github.com/marianita-boom-no-risks/marianita-klix-design-system/blob/main/SECURITY.md" target="_blank" rel="noopener" style="font-size: 13px; color: var(--text-primary); text-decoration: none;">Security</a>
+              <a href="https://github.com/marianita-boom-no-risks/marianita-klix-design-system/blob/main/LICENSE" target="_blank" rel="noopener" style="font-size: 13px; color: var(--text-primary); text-decoration: none;">License (MIT)</a>
+            </div>
+          </div>
+
         </div>
+
+        <!-- Footer bottom -->
+        <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 24px; border-top: 1px solid var(--border-primary); flex-wrap: wrap; gap: 12px;">
+          <div style="font-size: 12px; color: var(--text-secondary);">
+            © 2026 Mariana K. · Built with the Marianita Klix Design System (yes, eating our own dog food).
+          </div>
+          <div style="display: flex; gap: 14px; align-items: center;">
+            <a href="https://github.com/marianita-boom-no-risks/marianita-klix-design-system" target="_blank" rel="noopener" aria-label="GitHub" style="color: var(--text-secondary); text-decoration: none;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.4 3-.405 1.02.005 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            </a>
+            <a href="/.well-known/security.txt" style="font-size: 12px; color: var(--text-secondary); text-decoration: none;">security.txt</a>
+            <a href="/sitemap.xml" style="font-size: 12px; color: var(--text-secondary); text-decoration: none;">sitemap</a>
+          </div>
+        </div>
+
       </div>
     </footer>
 
