@@ -1,0 +1,9 @@
+{
+  "_comment": "Cursor MCP wiring for MK-DS. Adjust the absolute path to where you cloned the repo.",
+  "mcpServers": {
+    "marianita-klix-ds": {
+      "command": "node",
+      "args": ["/absolute/path/to/marianita-klix-design-system/mcp/index.js"]
+    }
+  }
+}
