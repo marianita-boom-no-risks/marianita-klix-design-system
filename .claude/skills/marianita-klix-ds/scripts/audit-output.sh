@@ -14,11 +14,12 @@
 #   - <div onclick=...> patterns
 #   - Icon-only buttons without aria-label
 #   - outline: none without a :focus-visible replacement
+#   - Skipped heading levels (h1 → h3)
+#   - Invented mk-* classes (cross-checked against mcp/registry.json)
 #
 # Doesn't catch (yet):
-#   - Skipped heading levels (would need a proper HTML parser)
-#   - Inputs without labels (same)
-#   - Invented mk-* classes (needs registry.json lookup, on the todo list)
+#   - Inputs without labels (would need proper HTML AST parsing)
+#   - Focus trap leaks (runtime behavior, can't detect statically)
 #
 # Usage:
 #   ./audit-output.sh <file>     audit one file
@@ -74,7 +75,10 @@ echo ""
 
 TOTAL_VIOLATIONS=0
 
-# ── Helper: report a finding ──────────────────────────────────
+# ── Helpers ───────────────────────────────────────────────────
+ok() { printf "  ${GRN}✓${RST} %s\n" "$*"; }
+warn() { printf "  ${YEL}!${RST} %s\n" "$*"; }
+
 report() {
   local severity="$1"
   local rule="$2"
@@ -203,12 +207,104 @@ for f in $FILES; do
   done < <(grep -nE 'outline\s*:\s*none' "$f" 2>/dev/null | head -10 || true)
 done
 
-# ── Rule 7: Invented mk- classes ──────────────────────────────
-# TODO(mariana): cross-reference against mcp/registry.json. Skipping for now;
-# would need to extract the class list from the JSON and grep negatively.
-# This is high-value but I haven't gotten to it. Manual review for now.
-echo "${CYA}▸${RST} Rule 7: Invented mk- classes (manual review)"
-echo "  ${YEL}skipped — verify all mk- classes exist in mcp/registry.json by hand${RST}"
+# ── Rule 7: Invented mk- classes (cross-reference with registry) ────
+echo "${CYA}▸${RST} Rule 7: Invented mk- classes"
+
+# Locate the registry. We search upward from the target.
+REGISTRY=""
+for candidate in \
+  "${REPO_ROOT:-}/mcp/registry.json" \
+  "$(pwd)/mcp/registry.json" \
+  "$(dirname "$TARGET")/mcp/registry.json" \
+  "$(dirname "$TARGET")/../mcp/registry.json" \
+  "$(dirname "$TARGET")/../../mcp/registry.json" \
+  "$(dirname "$TARGET")/../../../mcp/registry.json"
+do
+  if [[ -f "$candidate" ]]; then
+    REGISTRY="$candidate"
+    break
+  fi
+done
+
+if [[ -z "$REGISTRY" ]]; then
+  warn "  Couldn't find mcp/registry.json — skipping Rule 7 (manual review needed)"
+else
+  # Extract known mk- prefixes from registry.json into a sorted unique list.
+  # Format expected: each component has a "slug" and optionally cssClasses[].
+  # We collect both "mk-${slug}" and any explicit cssClasses entries.
+  KNOWN_MK_CLASSES=$(node -e '
+    const r = JSON.parse(require("fs").readFileSync("'"$REGISTRY"'", "utf-8"));
+    const set = new Set();
+    for (const c of (r.components || [])) {
+      if (c.slug) set.add("mk-" + c.slug);
+      for (const cls of (c.cssClasses || [])) set.add(cls);
+    }
+    process.stdout.write([...set].sort().join("\n"));
+  ' 2>/dev/null || echo "")
+
+  if [[ -z "$KNOWN_MK_CLASSES" ]]; then
+    warn "  registry.json found but couldn't extract classes — skipping (likely Node unavailable or registry malformed)"
+  else
+    # Write known classes to a temp file for grep -F -f
+    KNOWN_TMP=$(mktemp)
+    echo "$KNOWN_MK_CLASSES" > "$KNOWN_TMP"
+
+    found_invented=0
+    for f in $FILES; do
+      case "$f" in *.json|*registry*) continue ;; esac
+
+      # Extract every mk-X class reference (in HTML class="…", JSX className, CSS selectors)
+      # Strip BEM modifiers (e.g., mk-btn--primary → mk-btn) for matching against the base classes,
+      # but also accept the full class if registered.
+      USED=$(grep -ohE 'mk-[a-z][a-z0-9-]*(--[a-z0-9-]+)?(__[a-z0-9-]+)?' "$f" 2>/dev/null | sort -u || true)
+
+      for cls in $USED; do
+        # Strip BEM modifier/element to get base
+        base="${cls%%--*}"
+        base="${base%%__*}"
+
+        # Match base or full against known set
+        if ! grep -qFx -- "$base" "$KNOWN_TMP" && ! grep -qFx -- "$cls" "$KNOWN_TMP"; then
+          report ERROR "B1: Invented class '$cls'" "$f" "?" \
+            "$(grep -nF "$cls" "$f" | head -1 | cut -c1-80)" \
+            "Not in mcp/registry.json. Use a registered class or surface the gap."
+          found_invented=1
+          break  # one violation per file is enough; user can fix and re-run
+        fi
+      done
+    done
+
+    rm -f "$KNOWN_TMP"
+
+    if [[ $found_invented -eq 0 ]]; then
+      ok "  All mk-* classes match the registry"
+    fi
+  fi
+fi
+
+# ── Rule 8: Skipped heading levels (h1 → h3 etc.) ─────────────
+echo "${CYA}▸${RST} Rule 8: Skipped heading levels"
+for f in $FILES; do
+  case "$f" in *.css|*.json|*.sh) continue ;; esac
+
+  # Extract heading levels in document order. Tolerant of attributes between < and digit.
+  LEVELS=$(grep -oE '<h[1-6]' "$f" 2>/dev/null | sed 's/<h//' || true)
+  [[ -z "$LEVELS" ]] && continue
+
+  prev=0
+  line_num=0
+  while IFS= read -r lvl; do
+    line_num=$((line_num + 1))
+    if [[ $prev -gt 0 && $lvl -gt $((prev + 1)) ]]; then
+      report WARN "C4: Skipped heading level (h$prev → h$lvl)" "$f" "~$line_num" \
+        "h$prev followed by h$lvl" \
+        "Use h$((prev + 1)) instead, or restructure the heading order."
+      break  # one warning per file
+    fi
+    prev=$lvl
+  done <<< "$LEVELS"
+done
+ok "  Heading level check complete"
 echo ""
 
 # ── Summary ───────────────────────────────────────────────────
