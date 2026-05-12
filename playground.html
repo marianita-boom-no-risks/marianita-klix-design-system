@@ -393,7 +393,7 @@
         </div>
         <span style="font-size:16px;font-weight:700;color:#fff;letter-spacing:-0.02em;">Marianita Klix <span style="font-weight:400;color:var(--gray-400);">Design System</span></span>
       </a>
-      <span style="font-size:11px;font-weight:600;color:var(--brand);background:rgba(31,18,222,0.15);padding:3px 8px;border-radius:var(--radius-full);letter-spacing:0.03em;">v1.0</span>
+      <span style="font-size:11px;font-weight:600;color:var(--brand);background:rgba(31,18,222,0.15);padding:3px 8px;border-radius:var(--radius-full);letter-spacing:0.03em;">v2.0</span>
       <nav class="header-nav" style="margin-left:24px;">
         <a href="index.html" class="header-nav-link">Docs</a>
         <a href="playground.html" class="header-nav-link active">Playground</a>
@@ -822,7 +822,7 @@
           <span style="width:6px;height:6px;border-radius:50%;background:var(--brand);"></span>Active
         </span>
         <span style="display:inline-flex; padding:6px 14px; font-size:12px; font-weight:600; color:var(--brand); border-bottom:2px solid var(--brand); cursor:default;">Tab</span>
-        <span style="width:32px;height:32px;border-radius:50%;background:var(--brand);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#fff;">OR</span>
+        <span style="width:32px;height:32px;border-radius:50%;background:var(--brand);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#fff;">MK</span>
       `;
     }
 
@@ -837,7 +837,7 @@
       badge:  { color: 'brand', size: 'md', dot: true, close: false, text: 'Active' },
       input:  { type: 'text', size: 'md', label: 'Email Address', placeholder: 'Enter your email...', helper: '', error: false, disabled: false, icon: false },
       card:   { variant: 'session', withImage: false, title: 'Design Review Q4', subtitle: 'Project', badge: true },
-      avatar: { size: 'md', shape: 'circle', initials: 'OR', status: false, statusType: 'online', group: false },
+      avatar: { size: 'md', shape: 'circle', initials: 'MK', status: false, statusType: 'online', group: false },
       toggle: { size: 'md', label: 'Notifications', disabled: false, checked: true, color: 'brand' },
       table:  { rows: 5, striped: true, bordered: false, compact: false, withCheckbox: true, withSorting: true },
       toast:  { type: 'success', position: 'top-right', withIcon: true, withClose: true, autoDismiss: true, message: 'Changes saved successfully!' },
@@ -1362,7 +1362,7 @@
             border:2px solid var(--bg-card);"></span>` : '';
 
         const avatarColors = ['var(--brand)','#2970FF','#17B26A','#F04438','#B54708','#7C3AED'];
-        const avatarInitials = [s.initials || 'OR','SD','MR','KL','JW','TP'];
+        const avatarInitials = [s.initials || 'MK','SD','MR','KL','JW','TP'];
 
         if (s.group) {
           const count = 4;
@@ -1395,7 +1395,7 @@
               position:relative; width:${sz}px; height:${sz}px; border-radius:${borderRadius};
               background:var(--brand); display:flex; align-items:center; justify-content:center;
               font-size:${fs}px; font-weight:600; color:#fff;
-            ">${escHtml(s.initials || 'OR')}${statusDot}</div>
+            ">${escHtml(s.initials || 'MK')}${statusDot}</div>
           `);
         }
       },
