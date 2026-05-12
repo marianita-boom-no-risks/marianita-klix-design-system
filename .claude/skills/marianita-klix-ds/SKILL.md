@@ -1,6 +1,6 @@
 ---
 name: marianita-klix-ds
-version: 2.0.2
+version: 2.0.3
 description: Build, modify, audit, or migrate UI using the Marianita Klix Design System (MK-DS). Triggers on requests to build/design/create/scaffold/style/refactor a page, screen, component, dashboard, login, settings, modal, form, etc. in a project using MK-DS (detected via CLAUDE.md mentioning Marianita Klix, the `mk-` CSS prefix, or the `marianita-klix-ds` MCP server). Also activates on explicit mentions ("Marianita Klix", "MK-DS", "klix design system"), Figma-to-MK-DS handoff, dark-mode engineering, accessibility audits, animation/motion work, or migration of legacy UI into MK-DS. Routes the agent to the right reference doc, enforces hard rules, and defines a Definition of Done per output type.
 ---
 
@@ -11,7 +11,7 @@ description: Build, modify, audit, or migrate UI using the Marianita Klix Design
   and I moved it. Keep it consistent across the references/ folder, please.
 -->
 
-# Marianita Klix Design System — Skill (v2.0.2)
+# Marianita Klix Design System — Skill (v2.0.3)
 
 This is the skill I use to keep myself (and Claude) honest when building UI in MK-DS. It's a router: tell me what kind of task you're on and I'll point you at the right reference. Most of what's here used to live in CLAUDE.md, but it grew too big and too rules-heavy to belong in the project root.
 
@@ -32,9 +32,10 @@ The first time this skill is invoked in a conversation, start by showing this ba
 ╚═╝     ╚═╝╚═╝  ╚═╝      ╚═════╝ ╚══════╝
 
 MARIANITA KLIX DESIGN SYSTEM
-MK-DS is online.
-Tokens armed. Components sharp. Taste calibrated.
-No generic UI. Build it unmistakably Marianita Klix.
+Quiet systems. Sharp intent.
+Tokens set the rhythm. Components hold the line.
+Make less. Mean more.
+If it does not belong, let it disappear.
 ```
 
 Do not repeat the banner later in the same conversation. If the user explicitly asks for quiet output, machine-readable output, or no branding, skip the banner and continue normally.

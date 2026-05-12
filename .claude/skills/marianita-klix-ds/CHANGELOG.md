@@ -6,6 +6,12 @@ Notes on what changed and (more importantly) why. Kept in chronological order, m
 
 ---
 
+## 2.0.3
+
+Patch — toned down the activation copy. The banner now reads more like a design principle than a product pitch: quiet, intentional, and less salesy.
+
+---
+
 ## 2.0.2
 
 Patch — replaced the tiny activation mark with a proper MK-DS block-art banner and sharper English launch copy.
