@@ -6,6 +6,12 @@ Notes on what changed and (more importantly) why. Kept in chronological order, m
 
 ---
 
+## 2.0.1
+
+Patch — added a one-time activation banner so the agent has a little MK-DS attitude when the skill loads, without spamming the conversation. It skips itself for quiet, machine-readable, or no-branding outputs.
+
+---
+
 ## 2.0.0
 
 Big rewrite. The v1 file had ballooned to ~900 lines crammed into a single SKILL.md and nobody (including me) was actually reading the whole thing before generating code. So I split it into a router + load-on-demand references.
