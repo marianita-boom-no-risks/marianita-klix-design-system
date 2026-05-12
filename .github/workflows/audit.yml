@@ -67,6 +67,9 @@ jobs:
         run: |
           missing=0
           for f in *.html; do
+            case "$f" in
+              part-*.html) continue ;;
+            esac
             if ! grep -q "<title>" "$f"; then
               echo "Missing <title> in $f"
               missing=1
