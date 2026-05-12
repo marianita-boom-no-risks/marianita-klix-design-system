@@ -6,6 +6,12 @@ Notes on what changed and (more importantly) why. Kept in chronological order, m
 
 ---
 
+## 2.0.2
+
+Patch — replaced the tiny activation mark with a proper MK-DS block-art banner and sharper English launch copy.
+
+---
+
 ## 2.0.1
 
 Patch — added a one-time activation banner so the agent has a little MK-DS attitude when the skill loads, without spamming the conversation. It skips itself for quiet, machine-readable, or no-branding outputs.
